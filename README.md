@@ -28,7 +28,15 @@ Try to print in command line/Terminal:
 pip install pypng
 pip install pillow
 
-To test the “test” image insert the following inputs:
+To test the “test.png” image insert the following inputs:
+
+Welcome to the one-time pad Encryption Program!
+Would you like to Encrypt(E) or Decrypt(D) a message?
+E or D? D
+Enter Image File Name, Exclude extention: test
+Enter Secret Key: 1579563593
+Enter Length: 143
+Enter Size: 255
 
 
 If you have any questions feel free to contact me. 

@@ -37,8 +37,10 @@ def decyrptCharacter(char, key):
     else:
         return output
     
-def createKey():
-    #return int(time.time())
+def createSmallKey():
+    return int(time.time())
+
+def creatBigKey():
     small = 1
     for x in range(4096):
         small *= 2
@@ -54,24 +56,23 @@ def createKey():
 def turnListIntoColorList(myList):
     outputList = list()
     aList = myList
-    #print(len(aList)%4)
     while len(aList)%4 != 0:
         aList.insert(len(aList),256)
-    #print(aList)
     while len(aList) > 0:
         outputList.append([aList.pop(0),aList.pop(0),aList.pop(0),aList.pop(0)])
     return outputList
 
-def createEncrytion(string, imageName):
+def createEncrytion(string, imageName, s):
     encryptionSize = 255
-    key = createKey()
+    key = 1
+    if s == "b":
+        key = createBigKey()
+    else:
+        key = createSmallKey()
     random.seed(key)
     myList = list()
     for char in string:
-        #print(convertCharacterToASSKEY(char))
         rand = chooseRandomChar()
-        #print(rand)
-        #print(encryptCharacter(convertCharacterToASSKEY(char), rand))
         myList.append(encryptCharacter(convertCharacterToASSKEY(char), rand))
  
     img = Image.new('RGBA', (encryptionSize, encryptionSize), color = 'white')
@@ -86,7 +87,7 @@ def createEncrytion(string, imageName):
     pixelList = list()
     for pixel in colorList:
         pixelList.append([cordinateList.pop(random.randint(0, len(cordinateList)-1)),pixel])
-    #print(pixelList)
+
     for pixel in pixelList:
         for x in range(pixel[1].count(256)):
             pixel[1].remove(256)
@@ -115,7 +116,7 @@ def createEncrytion(string, imageName):
     
 def decrypt(filename, key):
     pixelList = list_of_pixels_in(filename)
-
+    print(key[0])
     random.seed(key[0])
     randomList = list()
     for elem in range(key[1]):
@@ -157,27 +158,29 @@ def list_of_pixels_in(filename):
     return listOfPixels
 def main():
     while 1:
+        print("Welcome to the one-time pad Encryption Program!")
+        print("Would you like to Encrypt(E) or Decrypt(D) a message?")
         option = input("E or D?" )
         if option == "E":
-            response = input("Enter Message: ")
-            imageName = input("Enter Image File Name: ")
+            response = input("Enter Secret Message: ")
+            s = input("Would you like a small key or a big key? \nEnter: s or b: ")
+            imageName = input("Enter Image File Name, Exclude extention: ")
             imageName +=".png"
-            key = createEncrytion(response, imageName)
-            print(key)
+            key = createEncrytion(response, imageName, s)
+            print("Secret Key: ", key[0])
+            print("Length Key: ", key[1])
+            print("Size Key:", key[2])
         if option == "D":
-            imageName = input("File Name: ")
-            key1 = input("Enter Key: ")
+            imageName = input("Enter Image File Name, Exclude extention: ")
+            key1 = input("Enter Secret Key: ")
             key1 = int(key1)
             key2 = input("Enter Length: ")
             key2 = int(key2)
-            key3 = input("Size: ")
+            key3 = input("Enter Size: ")
             key3 = int(key3)
             imageName += ".png"
             print(decrypt(imageName,[key1, key2, key3]))
     
-    #image = Image.open("hi.png")
-    #print(list_of_pixels_in("hi.png")[0])
-    #print(list_of_pixels_in("hi.png"))
 main()
 
 
