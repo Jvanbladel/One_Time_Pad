@@ -7,6 +7,9 @@ taking the local system time and using it as a seed for random number
 generation. This creates a regenerable set of random numbers since it is 
 impossible to create an entirely random number on a computer.
 
+The encryption is held in a PNG picture and I encourage you to try to
+figure out how the data is stored.
+
 Definition of Encryption:
 In cryptography, encryption is the process of encoding a message 
 or information in such a way that only authorized parties can 
