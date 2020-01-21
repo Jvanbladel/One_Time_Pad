@@ -24,6 +24,7 @@ def convertCharacterToASSKEY(char):
 
 def convertASSKEYToChar(ASKEY):
     return chr(ASKEY+32)
+
 def chooseRandomChar():
     return random.randint(0,93)
 
@@ -116,7 +117,6 @@ def createEncrytion(string, imageName, s):
     
 def decrypt(filename, key):
     pixelList = list_of_pixels_in(filename)
-    print(key[0])
     random.seed(key[0])
     randomList = list()
     for elem in range(key[1]):
@@ -156,11 +156,12 @@ def list_of_pixels_in(filename):
             r, g, b, a = image.getpixel((x,y))
             listOfPixels.append([[x,y],[r, g, b, a]])
     return listOfPixels
+
 def main():
     while 1:
         print("Welcome to the one-time pad Encryption Program!")
         print("Would you like to Encrypt(E) or Decrypt(D) a message?")
-        option = input("E or D?" )
+        option = input("E or D? ")
         if option == "E":
             response = input("Enter Secret Message: ")
             s = input("Would you like a small key or a big key? \nEnter: s or b: ")

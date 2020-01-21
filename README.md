@@ -34,10 +34,9 @@ Welcome to the one-time pad Encryption Program!
 Would you like to Encrypt(E) or Decrypt(D) a message?
 E or D? D
 Enter Image File Name, Exclude extention: test
-Enter Secret Key: 1579563593
-Enter Length: 143
-Enter Size: 255
-
+Secret Key: 1579565522
+Length Key: 143
+Size Key: 255
 
 If you have any questions feel free to contact me. 
 Thanks!
